@@ -42,6 +42,16 @@ var app = app || {};
       console.log(app.issues.length);
     },
 
+    // Goes to the previous page of issues
+    prevPage: function () {
+      app.page.prev();
+    },
+
+    // Goes to the next page of issues
+    nextPage: function () {
+      app.page.next();
+    },
+
     // Adds a single issue to the list by creating a view for it, and
     // appending its element to the `<ul>`
     addOne: function (issue) {

@@ -13,17 +13,21 @@
     <section id="main">
       <ul id="todo-list"></ul>
     </section>
-    <footer id="footer"></footer>
+    <footer id="footer">
+      <button id="prev-page">&lt;</button>
+      <button id="next-page">&gt;</button>
+    </footer>
   </section>
   <script type="text/template" id="item-template">
-    <div class="view" data-hi="no">
-      <label class="title" data-hi="234"><%- title %></label>
+    <div class="view">
+      <label class="title"><%- title %></label>
     </div>
   </script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src='bower_components/backbone/backbone.js'></script>
   <script src="js/models/issue.js"></script>
+  <script src="js/models/page.js"></script>
   <script src="js/collections/issues.js"></script>
   <script src="js/views/issue-view.js"></script>
   <script src="js/views/app-view.js"></script>

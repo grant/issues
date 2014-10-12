@@ -4,7 +4,6 @@ var app = app || {};
 (function () {
   'use strict';
 
-
   // A Github Issue has the following attributes
   // - title
   // - number

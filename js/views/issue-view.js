@@ -20,7 +20,7 @@ var app = app || {};
     },
 
     viewIssue: function (a, b) {
-      console.log($(a.currentTarget).data('id'));
+      // console.log($(a.currentTarget).data('id'));
     },
 
     // Re-render the titles of the issue item.
