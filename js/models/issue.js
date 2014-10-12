@@ -23,6 +23,7 @@ function trim (string) {
   // - title
   // - number
   // - labels
+  // - state
   // - user
   //   - username
   //   - avatar_url
@@ -48,6 +49,7 @@ function trim (string) {
     // Filter attribute list to only the ones we want to store.
     parse: function (response, options) {
       var trimmedBody = trim(response.body);
+      console.log(response);
       var attributes = {
         title: response.title,
         number: response.number,
