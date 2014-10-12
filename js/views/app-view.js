@@ -19,12 +19,19 @@ var app = app || {};
     // collection, when items are added or changed. Kick things off by
     // loading any preexisting todos that might be saved in *localStorage*.
     initialize: function () {
+      this.$issuesApp = $('#issuesapp');
       // Single issue
       this.$issueMode = $('.issue-mode');
       this.$details = $('#issue-details');
       // List of issues
       this.$list = $('#issue-list');
       this.$issuesMode = $('.issues-mode');
+
+      // Header
+      this.header = new app.PageHeaderView({
+        model: app.page
+      });
+      this.$issuesApp.prepend(this.header.render().el);
 
       this.listenTo(app.issues, 'reset', this.renderIssues);
       this.listenTo(app.page, 'change', this.reloadData);
@@ -33,11 +40,11 @@ var app = app || {};
       Backbone.history.start();
     },
 
-    // Renders the app
-    render: function () {},
-
     // Reloads the page with new data
     reloadData: function () {
+      // Reload page header
+      // this.renderPageHeader();
+      // Reload data
       if (app.page.get('id')) {
         // Render the issue page
         this.setMode('issue');
@@ -140,6 +147,14 @@ var app = app || {};
     },
 
     // Rendering
+
+    // Renders the page header
+    renderPageHeader: function () {
+      // var view = new app.IssueDetailView({
+      //   model: app.issue
+      // });
+      // this.$details.html(view.render().el);
+    },
 
     // Renders a single issue
     renderIssue: function () {

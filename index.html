@@ -7,9 +7,6 @@
 </head>
 <body>
   <section id="issuesapp">
-    <header id="header">
-      <h1>issues</h1>
-    </header>
     <section id="issues" class="issues-mode">
       <ul id="issue-list"></ul>
     </section>
@@ -26,6 +23,9 @@
       </nav>
     </footer>
   </section>
+  <script type="text/template" id="header-template">
+    <h1><%- owner %>/<%- repo %></h1>
+  </script>
   <script type="text/template" id="list-item-template">
     <div class='left'>
       <h3 class='title'><%- title %></h3>
@@ -37,11 +37,9 @@
           _.each(labels, function (item, key, list) {
             var textClass = getContrast50(item.color);
         %>
-          <a href=<%- item.url %>>
-            <li class='label <%= textClass %>' style='background-color:#<%= item.color %>'>
-              <%- item.name %>
-            </li>
-          </a>
+          <li class='label <%= textClass %>' style='background-color:#<%= item.color %>'>
+            <%- item.name %>
+          </li>
         <%
           });
         %>
@@ -54,9 +52,7 @@
     </div>
   </script>
   <script type="text/template" id="detail-template">
-    <div class="view">
-      <label class="title"><%- title %></label>
-    </div>
+    <label class="title"><%- title %></label>
   </script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -64,6 +60,7 @@
   <script src="js/models/issue.js"></script>
   <script src="js/models/page.js"></script>
   <script src="js/collections/issues.js"></script>
+  <script src="js/views/page-header-view.js"></script>
   <script src="js/views/issue-list-item-view.js"></script>
   <script src="js/views/issue-detail-view.js"></script>
   <script src="js/views/app-view.js"></script>

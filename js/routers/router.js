@@ -24,7 +24,8 @@ var app = app || {};
   appRouter.on('route:getRepo', function (owner, repo) {
     app.page.setState({
       owner: owner,
-      repo: repo
+      repo: repo,
+      page: 1
     });
   });
 

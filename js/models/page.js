@@ -9,8 +9,7 @@ var app = app || {};
 
     defaults: {
       owner: 'rails',
-      repo: 'rails',
-      page: 1
+      repo: 'rails'
     },
 
     // Sets the page state
