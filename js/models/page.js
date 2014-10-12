@@ -10,11 +10,7 @@ var app = app || {};
     defaults: {
       owner: 'rails',
       repo: 'rails',
-      page: 1,
-      nav: {
-        nextDisabled: false,
-        prevDisabled: true,
-      }
+      page: 1
     },
 
     // Sets the page state
@@ -46,10 +42,6 @@ var app = app || {};
       var lastPage = this.get('page');
       this.set('page', Math.max(1, lastPage - 1));
       return lastPage !== this.get('page');
-    },
-
-    updateNavButtons: function () {
-      console.log(app.issues.length);
     }
   });
 

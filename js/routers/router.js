@@ -33,7 +33,7 @@ var app = app || {};
     app.page.setState({
       owner: owner,
       repo: repo,
-      page: page
+      page: +page
     });
   });
 
@@ -42,7 +42,7 @@ var app = app || {};
     app.page.setState({
       owner: owner,
       repo: repo,
-      id: id
+      id: +id
     });
   });
 

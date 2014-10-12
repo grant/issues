@@ -22,9 +22,8 @@ var app = app || {};
       this.$list = $('#issue-list');
 
       this.listenTo(app.issues, 'reset', this.addAll);
-      this.listenTo(app.page, 'change:owner change:repo change:page change:id', this.reloadData);
+      this.listenTo(app.page, 'change', this.reloadData);
 
-      this.reloadData();
       Backbone.history.start();
     },
 
@@ -33,24 +32,30 @@ var app = app || {};
 
     // Reloads the page with new data
     reloadData: function () {
-      app.issues.fetch({
-        reset: true,
-        data: {
-          owner: app.page.get('owner'),
-          repo: app.page.get('repo'),
-          page: app.page.get('page')
-        },
-        success: function () {
-          app.page.updateNavButtons();
-        },
-        error: function () {
-          alert(app.page.get('owner') +
-            '/' + app.page.get('repo') +
-            ' not found'
-          );
-          app.issues.reset();
-        }
-      });
+      if (app.page.get('id')) {
+        // Render the issue page
+        app.issues.reset();
+      } else {
+        // Render the repo page
+        app.issues.fetch({
+          reset: true,
+          data: {
+            owner: app.page.get('owner'),
+            repo: app.page.get('repo'),
+            page: app.page.get('page')
+          },
+          success: function () {
+            // app.page.updateNavButtons();
+          },
+          error: function () {
+            alert(app.page.get('owner') +
+              '/' + app.page.get('repo') +
+              ' not found'
+            );
+            app.issues.reset();
+          }
+        });
+      }
     },
 
     // Goes to the previous page of issues
