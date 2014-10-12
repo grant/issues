@@ -3,6 +3,19 @@ var app = app || {};
 
 var BASE_URL = 'https://api.github.com/repos';
 
+// Trims a string to 140 chars breaking on words
+var MAX_STRING_LENGTH = 140;
+function trim (string) {
+  string = string.substr(0, MAX_STRING_LENGTH);
+  var trimmed = string.length === MAX_STRING_LENGTH;
+  //re-trim if we are in the middle of a word
+  string = string.substr(0, Math.min(string.length, string.lastIndexOf(' ')));
+  if (trimmed) {
+    string += '...';
+  }
+  return string;
+}
+
 (function () {
   'use strict';
 
@@ -34,6 +47,7 @@ var BASE_URL = 'https://api.github.com/repos';
 
     // Filter attribute list to only the ones we want to store.
     parse: function (response, options) {
+      var trimmedBody = trim(response.body);
       var attributes = {
         title: response.title,
         number: response.number,
@@ -43,7 +57,7 @@ var BASE_URL = 'https://api.github.com/repos';
           username: response.user.login,
           avatar_url: response.user.avatar_url
         },
-        body: response.body
+        body: trimmedBody
       };
       return attributes;
     }

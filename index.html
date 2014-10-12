@@ -46,8 +46,11 @@
           });
         %>
       </ul>
+      <p class='body'><%- body %></p>
     </div>
     <div class='right'>
+      <img class='avatar' src=<%= user.avatar_url %>
+      <h5 class='username'><%- user.username %></h5>
     </div>
   </script>
   <script type="text/template" id="detail-template">
