@@ -23,7 +23,7 @@ var app = app || {};
     viewIssue: function (e) {
       var id = $(e.currentTarget).data('id');
       var url = [
-        '',
+        '/',
         app.page.get('owner'),
         app.page.get('repo'),
         'issues',

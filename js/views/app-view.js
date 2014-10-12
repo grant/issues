@@ -42,8 +42,6 @@ var app = app || {};
 
     // Reloads the page with new data
     reloadData: function () {
-      // Reload page header
-      // this.renderPageHeader();
       // Reload data
       if (app.page.get('id')) {
         // Render the issue page
@@ -136,6 +134,8 @@ var app = app || {};
 
     // Updates the page url to the issues page
     updateURL: function (options) {
+      options = options || {};
+      options.replace = options.replace || true;
       var url = [
         '/',
         app.page.get('owner'),
