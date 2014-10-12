@@ -7,12 +7,12 @@ var app = app || {};
   var AppRouter = Backbone.Router.extend({
     // Routes need to have both with and without the trailing '/' options
     routes: {
-      "/:owner/:repo": "getRepo",
-      "/:owner/:repo/": "getRepo",
-      "/:owner/:repo/page/:page": "getRepoPage",
-      "/:owner/:repo/page/:page/": "getRepoPage",
-      "/:owner/:repo/issues/:id": "getRepoIssue",
-      "/:owner/:repo/issues/:id/": "getRepoIssue",
+      ":owner/:repo": "getRepo",
+      ":owner/:repo/": "getRepo",
+      ":owner/:repo/page/:page": "getRepoPage",
+      ":owner/:repo/page/:page/": "getRepoPage",
+      ":owner/:repo/issues/:id": "getRepoIssue",
+      ":owner/:repo/issues/:id/": "getRepoIssue",
       "*actions": "defaultRoute"
     }
   });

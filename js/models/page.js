@@ -23,10 +23,13 @@ var app = app || {};
     // page: (optional) The page number
     // id: (optional) The id of the issue to look at
     setState: function (state) {
-      this.set('owner', state.owner || this.defaults.owner);
-      this.set('repo', state.repo || this.defaults.repo);
-      this.set('page', state.page || this.defaults.page);
-      this.set('id', state.id);
+      state = state || {};
+      this.set({
+        owner: state.owner || this.defaults.owner,
+        repo: state.repo || this.defaults.repo,
+        page: state.page || this.defaults.page,
+        id: state.id
+      });
     },
 
     // Goes to the next page of issues
