@@ -1,0 +1,17 @@
+{
+  "name": "issues",
+  "version": "0.0.0",
+  "homepage": "https://github.com/grant/issues",
+  "authors": [
+    "Grant Timmerman"
+  ],
+  "description": "A simple Github issues viewer using Backbone.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
