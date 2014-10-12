@@ -28,15 +28,15 @@ var app = app || {};
       this.$issuesMode = $('.issues-mode');
 
       // Header
-      this.header = new app.PageHeaderView({
+      this.header = new app.PageHeaderTitleView({
         model: app.page
       });
-      this.$issuesApp.prepend(this.header.render().el);
+      this.$issuesApp.find('.header').append(this.header.render().el);
 
       this.listenTo(app.issues, 'reset', this.renderIssues);
       this.listenTo(app.page, 'change', this.reloadData);
 
-      this.$issueMode.hide();
+      this.setMode('issues');
       Backbone.history.start();
     },
 

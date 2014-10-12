@@ -8,6 +8,15 @@
 </head>
 <body>
   <section id="issuesapp">
+    <header class="header">
+      <nav class="issues-nav issues-mode">
+        <button id="prev-page">&lt;</button>
+        <button id="next-page">&gt;</button>
+      </nav>
+      <nav class="issue-nav issue-mode">
+        <button id="back">&lt;</button>
+      </nav>
+    </header>
     <section id="issues" class="issues-mode">
       <ul id="issue-list"></ul>
     </section>
@@ -24,8 +33,10 @@
       </nav>
     </footer>
   </section>
-  <script type="text/template" id="header-template">
-    <h1><%- owner %>/<%- repo %></h1>
+  <script type="text/template" id="header-title-template">
+    <h1>
+      <%- owner %> <span class='light'>/</span> <%- repo %>
+    </h1>
   </script>
   <script type="text/template" id="list-item-template">
     <div class='left'>
@@ -48,7 +59,7 @@
       <p class='body'><%- body %></p>
     </div>
     <div class='right'>
-      <img class='avatar' src=<%= user.avatar_url %>
+      <img class='avatar' src=<%= user.avatar_url %>/>
       <h5 class='username'><%- user.username %></h5>
     </div>
   </script>
@@ -61,7 +72,7 @@
   <script src="js/models/issue.js"></script>
   <script src="js/models/page.js"></script>
   <script src="js/collections/issues.js"></script>
-  <script src="js/views/page-header-view.js"></script>
+  <script src="js/views/page-header-title-view.js"></script>
   <script src="js/views/issue-list-item-view.js"></script>
   <script src="js/views/issue-detail-view.js"></script>
   <script src="js/views/app-view.js"></script>

@@ -1,15 +1,17 @@
-// Issue Detail View
+// Page Header Title View
 var app = app || {};
 
 (function ($) {
   'use strict';
 
   // The DOM element for an issue item
-  app.PageHeaderView = Backbone.View.extend({
-    tagName: 'header',
+  app.PageHeaderTitleView = Backbone.View.extend({
+    tagName: 'h1',
+
+    className: 'title',
 
     // Cache the template function for a single item.
-    template: _.template($('#header-template').html()),
+    template: _.template($('#header-title-template').html()),
 
     initialize: function () {
       // Bind view to model change

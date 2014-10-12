@@ -8,6 +8,8 @@ var app = app || {};
   app.IssueListItemView = Backbone.View.extend({
     tagName: 'li',
 
+    className: 'issue-item',
+
     // Cache the template function for a single item.
     template: _.template($('#list-item-template').html()),
 

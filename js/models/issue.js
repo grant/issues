@@ -8,9 +8,9 @@ var MAX_STRING_LENGTH = 140;
 function trim (string) {
   string = string.substr(0, MAX_STRING_LENGTH);
   var trimmed = string.length === MAX_STRING_LENGTH;
-  //re-trim if we are in the middle of a word
-  string = string.substr(0, Math.min(string.length, string.lastIndexOf(' ')));
   if (trimmed) {
+    //re-trim if we are in the middle of a word
+    string = string.substr(0, Math.min(string.length, string.lastIndexOf(' ')));
     string += '...';
   }
   return string;
@@ -49,7 +49,6 @@ function trim (string) {
     // Filter attribute list to only the ones we want to store.
     parse: function (response, options) {
       var trimmedBody = trim(response.body);
-      console.log(response);
       var attributes = {
         title: response.title,
         number: response.number,
