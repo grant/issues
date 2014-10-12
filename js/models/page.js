@@ -20,11 +20,13 @@ var app = app || {};
     // Sets the page state
     // owner: The Github repo's owner
     // repo: The repo name
-    // id: (optional) the id of the issue to look at
-    setState: function (owner, repo, id) {
-      this.set('owner', owner || this.defaults.owner);
-      this.set('repo', repo || this.defaults.repo);
-      this.set('id', id);
+    // page: (optional) The page number
+    // id: (optional) The id of the issue to look at
+    setState: function (state) {
+      this.set('owner', state.owner || this.defaults.owner);
+      this.set('repo', state.repo || this.defaults.repo);
+      this.set('page', state.page || this.defaults.page);
+      this.set('id', state.id);
     },
 
     // Goes to the next page of issues

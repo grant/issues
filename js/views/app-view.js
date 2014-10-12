@@ -22,18 +22,10 @@ var app = app || {};
       this.$list = $('#issue-list');
 
       this.listenTo(app.issues, 'reset', this.addAll);
-      this.listenTo(app.page, 'change:owner change:repo change:id', this.reset);
+      this.listenTo(app.page, 'change:owner change:repo change:page change:id', this.reloadData);
 
-      this.reset();
-      Backbone.history.start();
-    },
-
-    reset: function () {
-      console.log('render');
-      // Suppresses 'add' events with {reset: true} and prevents the app view
-      // from being re-rendered for every model. Only renders when the 'reset'
-      // event is triggered at the end of the fetch.
       this.reloadData();
+      Backbone.history.start();
     },
 
     // Renders the app
