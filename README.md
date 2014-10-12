@@ -1,4 +1,3 @@
-Github-Issues-Viewer
-====================
+# issues
 
-A simple issues viewer using Backbone.
+A simple Github issues viewer using Backbone.
