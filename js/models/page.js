@@ -24,7 +24,8 @@ var app = app || {};
         owner: state.owner || this.defaults.owner,
         repo: state.repo || this.defaults.repo,
         page: state.page || this.defaults.page,
-        id: state.id
+        id: state.id,
+        changed: !this.get('changed')
       });
     },
 

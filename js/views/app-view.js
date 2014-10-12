@@ -11,7 +11,8 @@ var app = app || {};
     // Delegated events for creating new items, and clearing completed ones.
     events: {
       'click #next-page': 'nextPage',
-      'click #prev-page': 'prevPage'
+      'click #prev-page': 'prevPage',
+      'click #back': 'back'
     },
 
     // At initialization we bind to the relevant events on the `Todos`
@@ -37,6 +38,7 @@ var app = app || {};
 
     // Reloads the page with new data
     reloadData: function () {
+      console.log('render');
       if (app.page.get('id')) {
         // Render the issue page
         this.setMode('issue');
@@ -62,6 +64,7 @@ var app = app || {};
       } else {
         // Render the repo page
         this.setMode('issues');
+        this.updateURL();
         app.issues.fetch({
           reset: true,
           data: {
@@ -100,6 +103,8 @@ var app = app || {};
       }
     },
 
+    // Events
+
     // Goes to the previous page of issues
     prevPage: function () {
       var pageChanged = app.page.prev();
@@ -116,6 +121,28 @@ var app = app || {};
       }
     },
 
+    // Goes back to the issue list
+    back: function () {
+      this.updateURL({
+        trigger: true
+      });
+    },
+
+    // Updates the page url to the issues page
+    updateURL: function (options) {
+      var owner = app.page.get('owner');
+      var repo = app.page.get('repo');
+      var page = app.page.get('page');
+      var url = [
+        '/',
+        app.page.get('owner'),
+        app.page.get('repo'),
+        'page',
+        app.page.get('page')
+      ].join('/');
+      Backbone.history.navigate(url, options);
+    },
+
     // Rendering
 
     // Renders a single issue
@@ -129,7 +156,7 @@ var app = app || {};
     // Adds a single issue to the list by creating a view for it, and
     // appending its element to the `<ul>`
     renderIssueItem: function (issue) {
-      var view = new app.IssueListViewItem({
+      var view = new app.IssueListItemView({
         model: issue
       });
       this.$list.append(view.render().el);
