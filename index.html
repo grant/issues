@@ -10,12 +10,19 @@
     <header id="header">
       <h1>issues</h1>
     </header>
-    <section id="main">
+    <section id="issues" class="issues-mode">
       <ul id="issue-list"></ul>
     </section>
+    <section id="issue" class="issue-mode">
+    </section>
     <footer id="footer">
-      <button id="prev-page">&lt;</button>
-      <button id="next-page">&gt;</button>
+      <nav class="issues-nav issues-mode">
+        <button id="prev-page">&lt;</button>
+        <button id="next-page">&gt;</button>
+      </nav>
+      <nav class="issue-nav issue-mode">
+        <button id="back">&lt;</button>
+      </nav>
     </footer>
   </section>
   <script type="text/template" id="item-template">

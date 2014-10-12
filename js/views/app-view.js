@@ -18,12 +18,16 @@ var app = app || {};
     // collection, when items are added or changed. Kick things off by
     // loading any preexisting todos that might be saved in *localStorage*.
     initialize: function () {
-      this.$main = this.$('#main');
+      // Single issue
+      this.$issueMode = $('.issue-mode');
+      // List of issues
       this.$list = $('#issue-list');
+      this.$issuesMode = $('.issues-mode');
 
       this.listenTo(app.issues, 'reset', this.addAll);
       this.listenTo(app.page, 'change', this.reloadData);
 
+      this.$issueMode.hide();
       Backbone.history.start();
     },
 
@@ -34,9 +38,26 @@ var app = app || {};
     reloadData: function () {
       if (app.page.get('id')) {
         // Render the issue page
-        app.issues.reset();
+        this.setMode('issue');
+        app.issue.fetch({
+          reset: true,
+          data: {
+            owner: app.page.get('owner'),
+            repo: app.page.get('repo'),
+            id: app.page.get('id')
+          },
+          error: function () {
+            alert(app.page.get('owner') +
+              '/' + app.page.get('repo') +
+              '/issues/' + app.page.get('id') +
+              ' not found'
+            );
+            app.issue.reset();
+          }
+        });
       } else {
         // Render the repo page
+        this.setMode('issues');
         app.issues.fetch({
           reset: true,
           data: {
@@ -55,6 +76,23 @@ var app = app || {};
             app.issues.reset();
           }
         });
+      }
+    },
+
+    // Sets the app mode
+    // mode:
+    // - 'issue': Show a specific issues
+    // - 'issues': Show a page of issues
+    setMode: function (mode) {
+      switch (mode) {
+        case 'issue':
+          this.$issueMode.show();
+          this.$issuesMode.hide();
+        break;
+        case 'issues':
+          this.$issueMode.hide();
+          this.$issuesMode.show();
+        break;
       }
     },
 
