@@ -14,6 +14,7 @@
       <ul id="issue-list"></ul>
     </section>
     <section id="issue" class="issue-mode">
+      <div id="issue-details"></div>
     </section>
     <footer id="footer">
       <nav class="issues-nav issues-mode">
@@ -25,7 +26,12 @@
       </nav>
     </footer>
   </section>
-  <script type="text/template" id="item-template">
+  <script type="text/template" id="list-item-template">
+    <div class="view">
+      <label class="title"><%- title %></label>
+    </div>
+  </script>
+  <script type="text/template" id="detail-template">
     <div class="view">
       <label class="title"><%- title %></label>
     </div>
@@ -36,7 +42,8 @@
   <script src="js/models/issue.js"></script>
   <script src="js/models/page.js"></script>
   <script src="js/collections/issues.js"></script>
-  <script src="js/views/issue-view.js"></script>
+  <script src="js/views/issue-list-item-view.js"></script>
+  <script src="js/views/issue-detail-view.js"></script>
   <script src="js/views/app-view.js"></script>
   <script src="js/routers/router.js"></script>
   <script src="js/app.js"></script>

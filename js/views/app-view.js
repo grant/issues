@@ -20,11 +20,12 @@ var app = app || {};
     initialize: function () {
       // Single issue
       this.$issueMode = $('.issue-mode');
+      this.$details = $('#issue-details');
       // List of issues
       this.$list = $('#issue-list');
       this.$issuesMode = $('.issues-mode');
 
-      this.listenTo(app.issues, 'reset', this.addAll);
+      this.listenTo(app.issues, 'reset', this.renderIssues);
       this.listenTo(app.page, 'change', this.reloadData);
 
       this.$issueMode.hide();
@@ -45,6 +46,9 @@ var app = app || {};
             owner: app.page.get('owner'),
             repo: app.page.get('repo'),
             id: app.page.get('id')
+          },
+          success: function () {
+            app.view.renderIssue();
           },
           error: function () {
             alert(app.page.get('owner') +
@@ -112,19 +116,29 @@ var app = app || {};
       }
     },
 
+    // Rendering
+
+    // Renders a single issue
+    renderIssue: function () {
+      var view = new app.IssueDetailView({
+        model: app.issue
+      });
+      this.$details.html(view.render().el);
+    },
+
     // Adds a single issue to the list by creating a view for it, and
     // appending its element to the `<ul>`
-    addOne: function (issue) {
-      var view = new app.IssueView({
+    renderIssueItem: function (issue) {
+      var view = new app.IssueListViewItem({
         model: issue
       });
       this.$list.append(view.render().el);
     },
 
     // Add all items in the **Issues** collection at once.
-    addAll: function () {
+    renderIssues: function () {
       this.$list.html('');
-      app.issues.each(this.addOne, this);
+      app.issues.each(this.renderIssueItem, this);
     }
   });
 })(jQuery);
