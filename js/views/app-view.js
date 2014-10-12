@@ -22,14 +22,11 @@ var app = app || {};
       this.$list = $('#issue-list');
 
       this.listenTo(app.issues, 'reset', this.addAll);
-      this.listenTo(app.page, 'reset', this.reset);
-
-      this.reset();
+      this.listenTo(app.page, 'change:owner change:repo change:id', this.reset);
     },
 
     reset: function () {
-      app.page.parseURL();
-
+      console.log('render');
       // Suppresses 'add' events with {reset: true} and prevents the app view
       // from being re-rendered for every model. Only renders when the 'reset'
       // event is triggered at the end of the fetch.
@@ -37,9 +34,7 @@ var app = app || {};
     },
 
     // Renders the app
-    render: function () {
-      console.log(app.issues.length);
-    },
+    render: function () {},
 
     // Reloads the page with new data
     reloadData: function () {
@@ -51,7 +46,6 @@ var app = app || {};
           page: app.page.get('page')
         },
         success: function () {
-          console.log(app.issues);
           app.page.updateNavButtons();
         },
         error: function () {

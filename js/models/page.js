@@ -17,24 +17,14 @@ var app = app || {};
       }
     },
 
-    // Parses the url to get the data needed
-    parseURL: function () {
-      var hash = window.location.hash;
-      // Try to parse the URL
-      var splitHash = hash.split('/');
-      var owner = splitHash[1];
-      var repo = splitHash[2];
-      if (owner && repo) {
-        this.set('owner', owner);
-        this.set('repo', repo);
-      }
-
-      // Set the hash
-      window.location.hash = [
-        '',
-        this.get('owner'),
-        this.get('repo')
-      ].join('/');
+    // Sets the page state
+    // owner: The Github repo's owner
+    // repo: The repo name
+    // id: (optional) the id of the issue to look at
+    setState: function (owner, repo, id) {
+      this.set('id', id);
+      this.set('owner', owner);
+      this.set('repo', repo);
     },
 
     // Goes to the next page of issues
@@ -55,10 +45,6 @@ var app = app || {};
 
     updateNavButtons: function () {
       console.log(app.issues.length);
-    },
-
-    reset: function () {
-      console.log('reset');
     }
   });
 
