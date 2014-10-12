@@ -8,35 +8,36 @@
 </head>
 <body>
   <section id="issuesapp">
-    <header class="header">
+    <div class="wrapper">
+      <header class="header">
+        <nav class="issues-nav issues-mode">
+          <button class="prev-page">◀</button>
+          <button class="next-page">▶</button>
+        </nav>
+        <nav class="issue-nav issue-mode">
+          <button class="back">◀</button>
+        </nav>
+      </header>
+      <section id="issues" class="issues-mode">
+        <ul id="issue-list"></ul>
+      </section>
+      <section id="issue" class="issue-mode">
+        <div id="issue-details"></div>
+      </section>
+      <div class="push"></div>
+    </div>
+    <footer class="footer">
       <nav class="issues-nav issues-mode">
-        <button id="prev-page">&lt;</button>
-        <button id="next-page">&gt;</button>
+        <button class="prev-page">◀</button>
+        <button class="next-page">▶</button>
       </nav>
       <nav class="issue-nav issue-mode">
-        <button id="back">&lt;</button>
-      </nav>
-    </header>
-    <section id="issues" class="issues-mode">
-      <ul id="issue-list"></ul>
-    </section>
-    <section id="issue" class="issue-mode">
-      <div id="issue-details"></div>
-    </section>
-    <footer id="footer">
-      <nav class="issues-nav issues-mode">
-        <button id="prev-page">&lt;</button>
-        <button id="next-page">&gt;</button>
-      </nav>
-      <nav class="issue-nav issue-mode">
-        <button id="back">&lt;</button>
+        <button class="back">◀</button>
       </nav>
     </footer>
   </section>
   <script type="text/template" id="header-title-template">
-    <h1>
-      <%- owner %> <span class='light'>/</span> <%- repo %>
-    </h1>
+    <%- owner %> <span class='light'>/</span> <%- repo %>
   </script>
   <script type="text/template" id="list-item-template">
     <div class='left'>

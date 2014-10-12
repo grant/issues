@@ -10,9 +10,9 @@ var app = app || {};
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
-      'click #next-page': 'nextPage',
-      'click #prev-page': 'prevPage',
-      'click #back': 'back'
+      'click .next-page': 'nextPage',
+      'click .prev-page': 'prevPage',
+      'click .back': 'back'
     },
 
     // At initialization we bind to the relevant events on the `Todos`
@@ -127,9 +127,7 @@ var app = app || {};
 
     // Goes back to the issue list
     back: function () {
-      this.updateURL({
-        trigger: true
-      });
+      this.updateURL();
     },
 
     // Updates the page url to the issues page
