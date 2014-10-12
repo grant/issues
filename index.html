@@ -27,8 +27,27 @@
     </footer>
   </section>
   <script type="text/template" id="list-item-template">
-    <div class="view">
-      <label class="title"><%- title %></label>
+    <div class='left'>
+      <h3 class='title'><%- title %></h3>
+      <ul class='labels'>
+        <%
+          function getContrast50(hexcolor){
+            return (parseInt(hexcolor, 16) > 0xffffff/2) ? 'dark': 'light';
+          }
+          _.each(labels, function (item, key, list) {
+            var textClass = getContrast50(item.color);
+        %>
+          <a href=<%- item.url %>>
+            <li class='label <%= textClass %>' style='background-color:#<%= item.color %>'>
+              <%- item.name %>
+            </li>
+          </a>
+        <%
+          });
+        %>
+      </ul>
+    </div>
+    <div class='right'>
     </div>
   </script>
   <script type="text/template" id="detail-template">
