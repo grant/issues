@@ -26,14 +26,7 @@ var app = app || {};
       // Suppresses 'add' events with {reset: true} and prevents the app view
       // from being re-rendered for every model. Only renders when the 'reset'
       // event is triggered at the end of the fetch.
-      app.issues.fetch({
-        reset: true,
-        data: {
-          owner: 'rails',
-          repo: 'rails',
-          page: 1
-        }
-      });
+      this.reloadData();
     },
 
     // Re-rendering the App just means refreshing the statistics -- the rest
@@ -42,14 +35,35 @@ var app = app || {};
       console.log(app.issues.length);
     },
 
+    // Reloads the page with new data
+    reloadData: function () {
+      app.issues.fetch({
+        reset: true,
+        data: {
+          owner: 'rails',
+          repo: 'rails',
+          page: app.page.get('page')
+        },
+        success: function () {
+          console.log(app.issues.length);
+        }
+      });
+    },
+
     // Goes to the previous page of issues
     prevPage: function () {
-      app.page.prev();
+      var pageChanged = app.page.prev();
+      if (pageChanged) {
+        this.reloadData();
+      }
     },
 
     // Goes to the next page of issues
     nextPage: function () {
-      app.page.next();
+      var pageChanged = app.page.next();
+      if (pageChanged) {
+        this.reloadData();
+      }
     },
 
     // Adds a single issue to the list by creating a view for it, and

@@ -6,19 +6,25 @@ var app = app || {};
 
   // Storage for the page
   app.Page = Backbone.Model.extend({
-    
+
     defaults: {
       page: 1
     },
 
     // Goes to the next page of issues
+    // @return True if the page number changes
     next: function () {
-      this.set('page', this.get('page') + 1);
+      var lastPage = this.get('page');
+      this.set('page', lastPage + 1);
+      return lastPage === this.get('page');
     },
 
     // Goes to the previous page of issues if available
+    // @return True if the page number changes
     prev: function () {
-      this.set('page', Math.max(1, this.get('page') - 1));
+      var lastPage = this.get('page');
+      this.set('page', Math.max(1, lastPage - 1));
+      return lastPage === this.get('page');
     }
   });
 
