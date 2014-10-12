@@ -38,7 +38,6 @@ var app = app || {};
 
     // Reloads the page with new data
     reloadData: function () {
-      console.log('render');
       if (app.page.get('id')) {
         // Render the issue page
         this.setMode('issue');
@@ -130,9 +129,6 @@ var app = app || {};
 
     // Updates the page url to the issues page
     updateURL: function (options) {
-      var owner = app.page.get('owner');
-      var repo = app.page.get('repo');
-      var page = app.page.get('page');
       var url = [
         '/',
         app.page.get('owner'),
@@ -157,7 +153,10 @@ var app = app || {};
     // appending its element to the `<ul>`
     renderIssueItem: function (issue) {
       var view = new app.IssueListItemView({
-        model: issue
+        model: issue,
+        attributes: {
+          'data-id': issue.get('number')
+        }
       });
       this.$list.append(view.render().el);
     },

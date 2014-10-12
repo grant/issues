@@ -13,14 +13,25 @@ var app = app || {};
 
     // The DOM events specific to an item.
     events: {
-      'click .title': 'viewIssue'
+      'click': 'viewIssue'
     },
 
     initialize: function () {
     },
 
-    viewIssue: function (a, b) {
-      // console.log($(a.currentTarget).data('id'));
+    // Click handler that views an issue
+    viewIssue: function (e) {
+      var id = $(e.currentTarget).data('id');
+      var url = [
+        '',
+        app.page.get('owner'),
+        app.page.get('repo'),
+        'issues',
+        id
+      ].join('/');
+      Backbone.history.navigate(url, {
+        trigger: true
+      });
     },
 
     // Re-render the titles of the issue item.

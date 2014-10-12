@@ -27,6 +27,7 @@ var BASE_URL = 'https://api.github.com/repos';
     sync: function (method, model, options) {
       if (method === 'read') {
         options.url = this.url(options);
+        options.data = {};
       }
       Backbone.sync(method, model, options);
     },

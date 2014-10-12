@@ -20,13 +20,17 @@ var app = app || {};
     // id: (optional) The id of the issue to look at
     setState: function (state) {
       state = state || {};
-      this.set({
+      var updatedData = {
         owner: state.owner || this.defaults.owner,
         repo: state.repo || this.defaults.repo,
-        page: state.page || this.defaults.page,
         id: state.id,
         changed: !this.get('changed')
-      });
+      };
+      // Only update the page if it is provided
+      if (state.page) {
+        updatedData.page = state.page;
+      }
+      this.set(updatedData);
     },
 
     // Goes to the next page of issues
