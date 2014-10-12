@@ -87,6 +87,11 @@ html {
   font-weight: 900;
 }
 
+.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 /* Wrapper and push keeps the footer at the bottom of the page at all times */
 .wrapper {
   min-height: 100%;

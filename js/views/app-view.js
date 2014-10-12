@@ -27,6 +27,9 @@ var app = app || {};
       this.$list = $('#issue-list');
       this.$issuesMode = $('.issues-mode');
 
+      // Nav buttons
+      this.$prevPage = $('.prev-page');
+
       // Header
       this.header = new app.PageHeaderTitleView({
         model: app.page
@@ -77,7 +80,8 @@ var app = app || {};
             page: app.page.get('page')
           },
           success: function () {
-            // app.page.updateNavButtons();
+            window.scrollTo(0, 0);
+            app.view.updateNavButtons();
           },
           error: function () {
             alert(app.page.get('owner') +
@@ -104,6 +108,17 @@ var app = app || {};
           this.$issueMode.hide();
           this.$issuesMode.show();
         break;
+      }
+    },
+
+    // Updates the navigation buttons
+    updateNavButtons: function () {
+      console.log('hi');
+      // Update the nav buttons
+      if (app.page.get('page') === 1) {
+        this.$prevPage.addClass('disabled');
+      } else {
+        this.$prevPage.removeClass('disabled');
       }
     },
 
