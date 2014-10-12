@@ -19,9 +19,16 @@ var app = app || {};
     // loading any preexisting todos that might be saved in *localStorage*.
     initialize: function () {
       this.$main = this.$('#main');
-      this.$list = $('#todo-list');
+      this.$list = $('#issue-list');
 
       this.listenTo(app.issues, 'reset', this.addAll);
+      this.listenTo(app.page, 'reset', this.reset);
+
+      this.reset();
+    },
+
+    reset: function () {
+      app.page.parseURL();
 
       // Suppresses 'add' events with {reset: true} and prevents the app view
       // from being re-rendered for every model. Only renders when the 'reset'
@@ -29,8 +36,7 @@ var app = app || {};
       this.reloadData();
     },
 
-    // Re-rendering the App just means refreshing the statistics -- the rest
-    // of the app doesn't change.
+    // Renders the app
     render: function () {
       console.log(app.issues.length);
     },
@@ -40,12 +46,20 @@ var app = app || {};
       app.issues.fetch({
         reset: true,
         data: {
-          owner: 'rails',
-          repo: 'rails',
+          owner: app.page.get('owner'),
+          repo: app.page.get('repo'),
           page: app.page.get('page')
         },
         success: function () {
-          console.log(app.issues.length);
+          console.log(app.issues);
+          app.page.updateNavButtons();
+        },
+        error: function () {
+          alert(app.page.get('owner') +
+            '/' + app.page.get('repo') +
+            ' not found'
+          );
+          app.issues.reset();
         }
       });
     },
