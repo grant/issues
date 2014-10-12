@@ -23,6 +23,9 @@ var app = app || {};
 
       this.listenTo(app.issues, 'reset', this.addAll);
       this.listenTo(app.page, 'change:owner change:repo change:id', this.reset);
+
+      this.reset();
+      Backbone.history.start();
     },
 
     reset: function () {

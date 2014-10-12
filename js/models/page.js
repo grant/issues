@@ -22,9 +22,9 @@ var app = app || {};
     // repo: The repo name
     // id: (optional) the id of the issue to look at
     setState: function (owner, repo, id) {
+      this.set('owner', owner || this.defaults.owner);
+      this.set('repo', repo || this.defaults.repo);
       this.set('id', id);
-      this.set('owner', owner);
-      this.set('repo', repo);
     },
 
     // Goes to the next page of issues
