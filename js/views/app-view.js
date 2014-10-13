@@ -8,16 +8,12 @@ var app = app || {};
   app.AppView = Backbone.View.extend({
     el: '#issuesapp',
 
-    // Delegated events for creating new items, and clearing completed ones.
     events: {
       'click .next-page': 'nextPage',
       'click .prev-page': 'prevPage',
       'click .back': 'back'
     },
 
-    // At initialization we bind to the relevant events on the `Todos`
-    // collection, when items are added or changed. Kick things off by
-    // loading any preexisting todos that might be saved in *localStorage*.
     initialize: function () {
       this.$issuesApp = $('#issuesapp');
       // Single issue
@@ -36,9 +32,11 @@ var app = app || {};
       });
       this.$issuesApp.find('.header').append(this.header.render().el);
 
+      // Listeners
       this.listenTo(app.issues, 'reset', this.renderIssues);
       this.listenTo(app.page, 'change', this.reloadData);
 
+      // Init
       this.setMode('issues');
       Backbone.history.start();
     },

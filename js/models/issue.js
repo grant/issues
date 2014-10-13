@@ -16,6 +16,10 @@ function trim (string) {
   return string;
 }
 
+function addGithubLinks (string) {
+  return string.replace(/@([A-Za-z0-9_]+)/g, '<a href="http://www.github.com/$1">@$1</a>');
+}
+
 (function () {
   'use strict';
 
@@ -58,7 +62,7 @@ function trim (string) {
           username: response.user.login,
           avatar_url: response.user.avatar_url
         },
-        body: response.body,
+        body: addGithubLinks(response.body),
         trimmedBody: trimmedBody
       };
       return attributes;
