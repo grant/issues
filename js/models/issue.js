@@ -16,6 +16,19 @@ function trim (string) {
   return string;
 }
 
+// Does general formatting for the body
+function format (string) {
+  string = addLineBreaks(string);
+  string = addGithubLinks(string);
+  return string;
+}
+
+// Adds line breaks
+function addLineBreaks (string) {
+  return string.replace(/\r\n/g, '<br>');
+}
+
+// Adds github links
 function addGithubLinks (string) {
   return string.replace(/@([A-Za-z0-9_]+)/g, '<a href="http://www.github.com/$1">@$1</a>');
 }
@@ -62,7 +75,7 @@ function addGithubLinks (string) {
           username: response.user.login,
           avatar_url: response.user.avatar_url
         },
-        body: addGithubLinks(response.body),
+        body: format(response.body),
         trimmedBody: trimmedBody
       };
       return attributes;

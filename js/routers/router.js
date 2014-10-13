@@ -24,8 +24,7 @@ var app = app || {};
   appRouter.on('route:getRepo', function (owner, repo) {
     app.page.setState({
       owner: owner,
-      repo: repo,
-      page: 1
+      repo: repo
     });
   });
 
@@ -52,10 +51,6 @@ var app = app || {};
     // Go to default repo
     var owner = app.page.defaults.owner;
     var repo = app.page.defaults.repo;
-    appRouter.navigate('//' + owner + '/' + repo, {
-      trigger: false,
-      replace: true
-    });
     app.page.setState();
   });
 })();

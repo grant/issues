@@ -26,8 +26,8 @@ var app = app || {};
         changed: !this.get('changed')
       };
       // Only update the page if it is provided
-      if (state.page) {
-        updatedData.page = state.page;
+      if (state.page || !this.get('page')) {
+        updatedData.page = state.page || 1;
       }
       this.set(updatedData);
     },

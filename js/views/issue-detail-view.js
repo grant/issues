@@ -8,8 +8,10 @@ var app = app || {};
   app.IssueDetailView = Backbone.View.extend({
     tagName: 'div',
 
+    className: 'issue',
+
     // Cache the template function for a single item.
-    template: _.template($('#detail-template').html()),
+    template: _.template($('#issue-template').html()),
 
     // The DOM events specific to an item.
     events: {
@@ -20,11 +22,9 @@ var app = app || {};
 
     // Re-render the titles of the issue item.
     render: function () {
-      this.$el.html(
-        this.template(
-          this.model.toJSON()
-        )
-      );
+      var modelData = this.model.toJSON();
+      modelData.viewType = 'full';
+      this.$el.html(this.template(modelData));
       return this;
     }
   });

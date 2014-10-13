@@ -39,7 +39,7 @@
   <script type="text/template" id="header-title-template">
     <%- owner %> <span class='light'>/</span> <%- repo %>
   </script>
-  <script type="text/template" id="list-item-template">
+  <script type="text/template" id="issue-template">
     <div class='left'>
       <h3 class='title'><%- title %></h3>
       <ul class='labels'>
@@ -57,15 +57,21 @@
           });
         %>
       </ul>
-      <p class='body'><%= trimmedBody %></p>
+      <% if (viewType === 'full') { %>
+        <span class='state'>— <%- state %></span>
+      <% } %>
+      <p class='body'><%
+        if (viewType === 'full') { %>
+          <%= body %>
+        <% } else { %>
+          <%= trimmedBody %>
+        <% } %>
+      </p>
     </div>
     <div class='right'>
       <img class='avatar' src=<%= user.avatar_url %>/>
       <h5 class='username'><%- user.username %></h5>
     </div>
-  </script>
-  <script type="text/template" id="detail-template">
-    <label class="title"><%- title %></label>
   </script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
