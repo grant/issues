@@ -113,7 +113,6 @@ var app = app || {};
 
     // Updates the navigation buttons
     updateNavButtons: function () {
-      console.log('hi');
       // Update the nav buttons
       if (app.page.get('page') === 1) {
         this.$prevPage.addClass('disabled');

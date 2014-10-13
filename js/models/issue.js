@@ -58,7 +58,8 @@ function trim (string) {
           username: response.user.login,
           avatar_url: response.user.avatar_url
         },
-        body: trimmedBody
+        body: response.body,
+        trimmedBody: trimmedBody
       };
       return attributes;
     }
